@@ -19,14 +19,15 @@ def to_date(date_: str) -> date:
     return datetime.strptime(date_, "%m/%d/%Y").date()
 
 
-def get_rotation(spot_time: time) -> str:
+def get_rotations(spot_time: time) -> list:
+    """Return all rotation names that the spot_time falls into (for overlapping windows)."""
+    matches = []
     for name, window in ROTATIONS.items():
         start = to_time(window["Start"])
         end = to_time(window["End"])
-        # Handle overlapping windows (Prime overlaps Afternoon)
         if start <= spot_time < end or (start > end and (spot_time >= start or spot_time < end)):
-            return name
-    return "Other"
+            matches.append(name)
+    return matches if matches else ["Other"]
 
 
 def read_spots(filename):
@@ -45,10 +46,11 @@ def cpv_by_rotation_by_day():
     # Nested dict: {date: {rotation: {"spend": x, "views": y}}}
     stats = defaultdict(lambda: defaultdict(lambda: {"spend": 0.0, "views": 0}))
     for spot in read_spots(SPOTS_LOCATION):
-        rotation = get_rotation(spot["time"])
+        rotations = get_rotations(spot["time"])
         d = spot["date"]
-        stats[d][rotation]["spend"] += spot["spend"]
-        stats[d][rotation]["views"] += spot["views"]
+        for rotation in rotations:
+            stats[d][rotation]["spend"] += spot["spend"]
+            stats[d][rotation]["views"] += spot["views"]
 
     # Print results
     print("Date       | Rotation  | Spend   | Views | CPV")
