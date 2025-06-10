@@ -19,8 +19,13 @@ def to_date(date_: str) -> date:
     return datetime.strptime(date_, "%m/%d/%Y").date()
 
 
-def get_rotations(spot_time: time) -> list:
-    """Return all rotation names that the spot_time falls into (for overlapping windows)."""
+def get_rotations(spot_time) -> list:
+    """Return all rotation names that the spot_time falls into (for overlapping windows).
+    If spot_time is not a datetime.time instance, return ['Other'].
+    """
+    from datetime import time as dt_time
+    if not isinstance(spot_time, dt_time):
+        return ["Other"]
     matches = []
     for name, window in ROTATIONS.items():
         start = to_time(window["Start"])

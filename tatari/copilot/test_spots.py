@@ -33,16 +33,16 @@ class TestGetRotations(unittest.TestCase):
             get_rotations(to_time(""))
 
     def test_none(self):
-        with self.assertRaises(TypeError):
-            get_rotations(None)
+        # Should not raise, should return ["Other"]
+        self.assertEqual(get_rotations(None), ["Other"])
 
     def test_invalid_format(self):
         with self.assertRaises(ValueError):
             get_rotations(to_time("25:00 PM"))
 
     def test_non_time_type(self):
-        with self.assertRaises(AttributeError):
-            get_rotations("not a time object")
+        # Should not raise, should return ["Other"]
+        self.assertEqual(get_rotations("not a time object"), ["Other"])
 
 if __name__ == "__main__":
     unittest.main()
