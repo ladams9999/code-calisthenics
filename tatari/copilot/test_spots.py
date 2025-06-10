@@ -1,6 +1,6 @@
 import unittest
 from datetime import time
-from spots_copilot import get_rotations, to_time
+from spots import get_rotations, to_time
 
 class TestGetRotations(unittest.TestCase):
     def test_morning_only(self):

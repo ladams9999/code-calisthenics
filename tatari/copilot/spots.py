@@ -8,7 +8,7 @@ ROTATIONS = {
     "Afternoon": {"Start": "12:00 PM", "End": "4:00 PM"},
     "Prime": {"Start": "3:00 PM", "End": "8:00 PM"},
 }
-SPOTS_LOCATION = 'spots.csv'
+SPOTS_LOCATION = '../spots.csv'
 
 
 def to_time(time_: str) -> time:
