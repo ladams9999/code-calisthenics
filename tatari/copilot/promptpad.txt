@@ -1,0 +1,31 @@
+Write a program that uses rotations and consumes spots.csv 
+Generates output that shows cost per view (CPV) by the following dimension:
+
+* CPV by rotation by day
+For the purpose of this exercise, here’s some terminology:
+
+* "Rotation" - The timerange on a TV network that an advertisement airs
+---
+When rotation times overlap, a spot should count in every valid rotation window, not just one.  Please modify the code to allow this.
+---
+#file:spots.csv When rotation times overlap, a spot should count in every valid rotation window, not just one.  Please modify the code to allow this.
+---
+In #file:test_spots_copilot.py , add tests for get_rotations
+---
+Please add tests for get_rotations for when the data is empty or not of type time, or anything else that may cause it to fail.   
+---
+#file:spots.py See the error below.  Fix get_rotations to not fail in this situation, and update test_non_time_type and any other tests as necessary to match the new expeted behaviour.
+
+======================================================================
+ERROR: test_non_time_type (__main__.TestGetRotations.test_non_time_type)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/lloyd/projects/code-calisthenics/tatari/copilot/test_spots.py", line 45, in test_non_time_type
+    get_rotations("not a time object")
+  File "/home/lloyd/projects/code-calisthenics/tatari/copilot/spots.py", line 28, in get_rotations
+    if start <= spot_time < end or (start > end and (spot_time >= start or spot_time < end)):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: '<=' not supported between instances of 'datetime.time' and 'str'
+---
+#file:test_spots.py Update tests that are now broken due to latest code update
+---
