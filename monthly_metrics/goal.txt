@@ -1,0 +1,24 @@
+Our company has a number of metrics (revenue, expenses, sales growth, etc) that are represented in a monthly cadence.
+
+
+
++---------------------------+----------+----------+----------+
+| Metric         | Jan 2021 | Feb 2021 | Mar 2021 | ...      |
++---------------------------+----------+----------+----------+
+| Revenue        | 100      | 110      | 80       | ...      |
+| Expenses       | 30       | 0        | 60       | ...      |
+| Sales Growth   | 10%      | n/a      | 1%       | ...      |
+| ...            | ...      | ...      | ...      | ...      |
+| ...            | ...      | ...      | ...      | ...      |
++---------------------------+----------+----------+----------+
+
+
+We need to:
+
+create a data structure to represent these metrics and values
+create the below utility functions/methods that return
+
+
+a single metric value at a given month
+all data for a subset of metrics (i.e. I want the data for revenue and expenses)
+total values for a given range of time period (i.e. I want the total revenue from Feb to June)
