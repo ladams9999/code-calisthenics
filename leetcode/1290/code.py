@@ -8,8 +8,11 @@ class Solution:
         decimal_value = 0
 
         values = self.getNodeValues(head)
+        place_value = 1
         for a_value in values:
-            decimal_value = (decimal_value * 2) + a_value
+            if a_value == 1:
+                decimal_value += place_value
+            place_value *= 2
 
         return decimal_value
 
